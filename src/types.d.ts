@@ -148,7 +148,7 @@ export interface NuxtApolloConfig<T = ClientConfig> {
    * @type {string}
    * @default 'Bearer'
    **/
-  authType?: string;
+  authType?: string | null;
 
   /**
    * Name of the Authentication token header.
