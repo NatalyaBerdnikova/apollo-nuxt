@@ -93,7 +93,7 @@ export type ClientConfig = {
    * @type {string}
    * @default "Bearer"
    **/
-  authType?: string | null;
+  authType?: string;
 
   /**
    * Name of the Authentication token header.
@@ -106,6 +106,14 @@ export type ClientConfig = {
    * Configuration for the auth cookie.
    **/
   cookieAttributes?: CookieAttributes;
+
+  /**
+   * Determine if the `apollo-upload-client` HttpLink should be used instead of the standard Apollo HttpLink.
+   * This behavior is disabled by default.
+   * @type {boolean}
+   * @default false
+   */
+  useUploadLink?: boolean
 };
 
 export interface NuxtApolloConfig<T = ClientConfig> {
@@ -140,7 +148,7 @@ export interface NuxtApolloConfig<T = ClientConfig> {
    * @type {string}
    * @default 'Bearer'
    **/
-  authType?: string;
+  authType?: string | null;
 
   /**
    * Name of the Authentication token header.

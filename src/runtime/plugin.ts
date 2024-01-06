@@ -4,6 +4,7 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { createApolloProvider } from '@vue/apollo-option'
 import { ApolloClients, provideApolloClients } from '@vue/apollo-composable'
 import { ApolloClient, ApolloLink, createHttpLink, InMemoryCache, split } from '@apollo/client/core'
+import { createUploadLink } from 'apollo-upload-client'
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { setContext } from '@apollo/client/link/context'
 import createRestartableClient from './ws'
@@ -58,11 +59,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     })
 
-    const httpLink = authLink.concat(createHttpLink({
+    const httpLinkOptions = {
       ...(clientConfig?.httpLinkOptions && clientConfig.httpLinkOptions),
       uri: (process.client && clientConfig.browserHttpEndpoint) || clientConfig.httpEndpoint,
       headers: { ...(clientConfig?.httpLinkOptions?.headers || {}) }
-    }))
+    }
+
+    const httpLink = authLink.concat(clientConfig.useUploadLink ? createUploadLink(httpLinkOptions) : createHttpLink(httpLinkOptions))
 
     let wsLink: GraphQLWsLink | null = null
 
