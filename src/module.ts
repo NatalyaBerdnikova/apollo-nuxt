@@ -116,6 +116,7 @@ export default defineNuxtModule<NuxtApolloConfig<any>>({
     })
 
     nuxt.options.alias['#apollo'] = resolve(nuxt.options.buildDir, 'apollo')
+    nuxt.options.alias['apollo-upload-client'] = 'apollo-upload-client/public/index.mjs'
 
     addPlugin(resolve('runtime/plugin'))
 
