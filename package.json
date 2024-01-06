@@ -1,10 +1,11 @@
 {
-  "name": "@nuxtjs/apollo-nat",
+  "name": "@nuxtjs/apollo",
   "version": "5.0.0-upload",
   "license": "MIT",
   "repository": "https://github.com/nuxt-modules/apollo-module",
   "homepage": "https://apollo.nuxtjs.org",
   "type": "module",
+  "private": true,
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
